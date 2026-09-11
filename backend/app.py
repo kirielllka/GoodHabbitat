@@ -3,7 +3,11 @@ from sqlalchemy import text
 
 from backend.depends import SessionDep
 
+from backend.api import router
+
 app = FastAPI()
+
+app.include_router(router)
 
 
 @app.get("/")
@@ -18,4 +22,5 @@ async def root(session:SessionDep):
         return {"message": values}
     except Exception as e:
         return {"message": str(e)}
+
 
